@@ -28,15 +28,16 @@
 .fraselogo {
     position: absolute;
     font-family: 'Lobster', cursive;
-    font-size: 110%;
+    font-size: 107%;
     color: aliceblue;
-    margin-bottom: 40%;
-    margin-right: 60%;
+    margin-bottom: 46.5%;
+    margin-right: 65%;
     text-shadow: 10px 0px 10px black;
 }
 
 .fraselogo h1 {
     font-weight: 500;
+
 }
 
 .navbar {
@@ -51,9 +52,10 @@
 }
 
 .navbar .logo {
-    width: 80px;
+    width: 74px;
     transform: rotate(12deg);
-    margin-top: 10px;
+    margin-top: -1.5%;
+    margin-left: -3%;
 
 }
 
@@ -71,12 +73,15 @@ span {
 }
 
 .content h1 {
-    font-size: 350%;
+    font-size: 360%;
     font-family: 'Roboto Slab', serif;
     color: aliceblue;
     font-weight: 600;
+    margin-top: -35%;
+    text-shadow: 0px 8px 20px black;
 
 }
+
 
 .content a {
     text-decoration: none;
@@ -87,6 +92,13 @@ span {
     padding: 15px 60px;
     border-radius: 50px;
     margin-top: 20px;
+    transition: all 0.8s;
+}
+
+.content a:hover
+{
+        background: rgb(255, 208, 1);
+        opacity: calc(0.9);
 }
 
 
@@ -96,7 +108,7 @@ span {
     bottom: 0;
     z-index: -1;
     width: 100%;
-    height: 110%;
+    height: 100%;
 
 
 }
@@ -104,11 +116,14 @@ span {
 .header2 {
     background-color: #0C2738;
     padding: 1%;
+    width: 98%;
     height: 90px;
-
-
+    border-bottom: solid yellow 2px;
+    border-top:solid #05151f 1px; ;
 
 }
+
+
 
 ul {
     margin: 10px;
@@ -125,19 +140,19 @@ ul {
     font-weight: 500;
 }
 
-li a {
+.header2 li a {
     color: aliceblue;
     text-decoration: none;
 }
 
-li {
+.header2 li {
     font-size: 120%;
     margin: 10px;
     display: flex;
     transition: all 0.3s;
 }
 
-li:hover {
+.header2 li:hover {
     border-bottom: solid yellow 2px;
 
 }
@@ -174,19 +189,21 @@ li:hover {
 
 }
 
-.sla {
-    padding: 10%;
+.banner {
+    padding: 5%;
     height: 800px;
-    background-color: #081B27;
+    background-color: #05151f;
+    /* height: 000000%; */
 }
 
 
 
 video {
-    margin-top: -8%;
-    margin-left: -5%;
-    width: 60%;
-    height: 50%;
+    margin-top: -2%;
+    margin-left: -3%;
+    width: 55%;
+    border-radius: 5%;
+    height: 47%;
     transition: all 0.3s;
 }
 
@@ -195,10 +212,10 @@ video:hover{
     box-shadow: 0px 0px 20px 9px white;
 }
 video:focus{
-    box-shadow: 0px 0px 20px 9px white;
+    box-shadow: 0px 0px 20px 9px rgb(255, 255, 255);
 }
 
-.sla h2 {
+.banner h2 {
     color: white;
     font-family: 'Roboto Slab', serif;
     font-size: 200%;
@@ -212,8 +229,132 @@ video:focus{
     border-radius: 3%;
     margin-left: 50%;
     margin-top: -28%;
-    padding: 7.5%;
-    width: 20%;
+    padding: 8%;
+    width: 25%;
     box-shadow: 0px 0px 0px 2px white;
     
+}
+
+.textoInspiracao h2{
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    font-size: 150%;
+    font-weight: 300;
+    text-align: start;
+    
+}
+
+.textoInspiracao{
+    position: absolute;
+    border-radius: 3%;
+    margin-left: -2%;
+    margin-top: 5%;
+    padding: 6%;
+    height: 205px;
+    width: 28%;
+    box-shadow: 0px 0px 0px 2px white;
+}
+
+.galeria {
+    margin-left: 48%;
+    border-radius: 5%;
+    margin-top: 6%;
+    width:640px;
+    height: 360px;
+    background-color: #081B27;
+    overflow: hidden; 
+    transition: all 0.3s;
+    box-shadow: 0px 0px 20px 9px white;
+    
+}
+
+.galeria .fotos{
+    width: 590%;
+    animation-name: animaçao;
+    animation-duration: 20s;
+    animation-iteration-count: infinite;
+    
+}
+
+.galeria .fotos img{
+    width: 19.9%;
+}
+
+@keyframes animaçao {
+    0% {margin-left: 0;}
+    20% {margin-left: 0;}
+    25% {margin-left: -117%;}
+    45% {margin-left: -117%;}
+    50% {margin-left: -230%;}
+    70% {margin-left: -230%;}
+    75% {margin-left: -345%;}
+    95% {margin-left: -345%;}
+    100% {margin-left: -345%;}
+}
+
+.footer{
+    background-color: #0C2738;
+    border-top: solid  yellow 2px ;
+    padding: 1%;
+    width: 1005;
+}
+.contato h2 {
+    font-family: 'Roboto Slab', serif;
+    font-size: 250%;
+    font-weight: 300;
+}
+
+.contato, .Informaçoes{
+    color: white;
+}
+
+.contato{
+    width: 10%;
+    margin-left: 42%;
+    display: flex;
+    margin-top: 0%;
+    justify-content: center;
+    align-items: center;
+    /* background-color: yellow;  */
+    flex-direction: column;
+}
+
+.contato ul{
+    margin-left: -40%;
+    margin-top: -5%;
+    width: 20%;
+    }
+
+.contato li{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+h5{
+    width: 28%;
+    margin-left: 36%;
+    color: white;
+}
+
+.Informaçoes{
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: space-evenly;
+    margin-left: 30%;
+    margin-top: -7%;
+    /* background-color: yellow; */
+}
+
+.Informaçoes li  {
+    margin-left: 8%;
+    list-style: none;
+    text-decoration: none;
+    color: white;
+}
+
+.Informaçoes a{
+    color: white;
+    text-decoration: none;
 }

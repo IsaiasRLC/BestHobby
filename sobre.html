@@ -5,13 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="inicial.css">
+    <link rel="stylesheet" href="sobre.css">
     <title>Document</title>
     <script src="https://unpkg.com/scrollreveal"></script>
+
 </head>
 
 <body>
-   
+    <!-- peimeiro header com banner  -->
+
+
     <div class="header2">
         <div class="fraselogo2">
             <h1><span>Best</span>Hobby</h1>
@@ -22,8 +26,8 @@
 
         <div class="navbar2">
             <ul>
-                <li><a href="#">HOME</a></li>
-                <li><a href="#">SOBRE</a></li>
+                <li><a href="inicial.html">HOME</a></li>
+                <li><a href="sobre.html">SOBRE</a></li>
                 <li>|</li>
                 <li><a href="#">CADASTRO</a></li>
                 <li><a href="#">LOGIN</a></li>
@@ -31,37 +35,56 @@
         </div>
     </div>
 
+
+
+
+
+
+
     <div class="banner">
-        <!-- <div class="Dvideo"> -->
-        <video class="c_video" src="videoReacao.mp4" preload="auto" controls autoplay loop></video>
+        <img src="tealazul.png" class="imagemSobre" alt="">
+        <h1 class="textoPq">"Por que ir ao cinema?"</h1>
 
-        <div class="textoExperiencia">
-            <h2>Uma experiencia Inesquecivel ao assitir seus filmes favoritos!</h2>
+        <h5 class="textoRs">A resposta e simples</h5>
+
+
+        <img src="https://img.freepik.com/free-photo/smiling-man-watching-movie-cinema_23-2147803818.jpg?w=360&t=st=1668454439~exp=1668455039~hmac=179e5f3ce3718eaffb3e53ff3a9bcfb805091b9d4b3eca27e482312fdecbf9be"
+            class="imagemMotivacao">
+
+        <div class="fraseSobre">
+
+            <img src="pipoca.png" style="width:10% ; margin-left: -20%; margin-top: -20%; transform: rotate(18deg); position: absolute; " alt="">
+
+            <img src="pipoca.png" style="width:10% ; margin-left: 60%; margin-top: 20%; transform: rotate(340deg); position: absolute; " alt="">
+
+            <p>Muitas pessoas tem diversos hobby, como ir a praia, parques entre outros..mas para quem é apaixonado por filmes o cinema é um verdadeiro 'Parque de Diversoes'. Posso dizer com propriedade que é uma experiencia Inesquecivel, ainda mais se for assitir ao um filme com uma franquia famosa, como marvel, dc, animes e star wars o cinema se transforma em um estagio <br>- Isaias Resende  </p>
+
         </div>
 
-        <div class="textoInspiracao">
-            <h2> Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ullam eos ab suscipit voluptatem totam vitae, quaerat reiciendis dignissimos atque aliquam tempora reprehenderit.</h2> 
-        </div>
 
-        <div class="galeria">
-            <div class="fotos">
-                <img style="height:370px; width: 18%;" src="dc1gif.gif" alt="">
-                <img style="height:370px ;" src="marvelgif.gif" alt="">
-                <img style="height:370px ;" src="one.gif" alt="">
-                <img style="height:370px; width: 17%;" src="starwars.gif" alt="">
-
-            </div>
-        </div>
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     <div class="footer">
 
         <div class="contato">
             <h2>Contato</h2>
             <ul>
-                <li> <a  href=""><img src="lind.png"/></a></li>
-                <li> <a href=""><img s src="insta.png"/></a></li>
-                <li> <a href=""><img src="email.png"/></a></li>
+                <li> <a href=""><img src="lind.png" /></a></li>
+                <li> <a href=""><img s src="insta.png" /></a></li>
+                <li> <a href=""><img src="email.png" /></a></li>
 
             </ul>
         </div>
@@ -75,13 +98,11 @@
 
 </html>
 <script>
-ScrollReveal().reveal('.textoExperiencia', {duration: 2500});
-ScrollReveal().reveal('.textoInspiracao', {duration: 2500});
-ScrollReveal().reveal('.textoInspiracao', {duration: 2500});
-ScrollReveal().reveal('.galeria', {duration: 2500});
-ScrollReveal().reveal('.fotos', {duration: 2500});
-ScrollReveal().reveal('.content h1', {duration: 1000});
-ScrollReveal().reveal('.in_trasiçao', {duration: 1000});
+     ScrollReveal().reveal('.textoPq', { duration: 1900 });
+     ScrollReveal().reveal('.textoRs', { duration: 1900 });
+    ScrollReveal().reveal('.imagemMotivacao', { duration: 2500 });
+    ScrollReveal().reveal('.fraseSobre', { duration: 2500 });
+
 
 
 

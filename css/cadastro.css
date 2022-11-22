@@ -1,0 +1,58 @@
+.caixa-form{
+    background-color:#e5e5e5;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.caixa-form h2 {
+    color: #e6005a;
+    margin-bottom: 1px;
+}
+/* align intem é a vertical
+    justify é a horizoltal
+*/
+.campo{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.campo input{
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #32b9cd;
+    color: black;
+}
+
+.caixa-form button{
+    margin-top:20px;
+    width: 120px;
+    color: #e5e5e5;
+    background-color: #e6005a;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all ease-in-out 1s;
+}
+
+.campo label{
+    color: #e6005a;
+    margin: 15px 0;
+}
+
+
+
+
+
+.caixa-form button:hover{
+    opacity: 0.8;
+    transform: scale(1.1) rotate(360deg);
+    box-shadow: 0px 0px 5px 5px blue;
+}

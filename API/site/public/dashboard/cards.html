@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaTech | Tempo Real</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="dashboards.css">
+
+    <script src="../js/funcoes.js"></script>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+
+    <div class="janela">
+
+
+        <div class="header-left dash-header">
+
+            <h1>BestHobby</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav">
+                <h3>Voto</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./dashboard.html">
+                    <h3>Ranking</h3>
+                </a>
+            </div>
+
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="dash">
+                <h2>Vote na sua franquia de filme favorito! 😁</h2>
+                <div class="seta" ></div>
+                <div class="seta2" ></div>
+                <div class="seta3" ></div>
+            <select  class="class_voto"  id="sel_voto">
+                <option value="">selecione</option>
+                <option value="1">Marvel</option>
+                <option value="2">DC</option>
+                <option value="3">StarWas</option>
+                <option value="4">One Peice</option>
+            </select>    
+            <br>
+
+            <button  class="btn_registrar" onclick="publicar()">Registrar</button><br>
+            
+            <div id="frase"></div>
+
+
+
+    </div>
+
+
+</body>
+
+<script>
+
+b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+
+    function publicar(){
+
+        
+        if(sel_voto.value =='' ){
+            alert('Por favor selecione uma franquia')
+        }else{
+    frase.innerHTML = `Seu voto foi para ${sel_voto.value} foi registrado com sucesso 🤩 <br><br>
+    Veja o ranking das franquias mais votadas
+    `
+        }
+
+        var selectVar = sel_voto.value;
+       
+        var fkUsuario =  sessionStorage.ID_USUARIO 
+
+        var corpo = {
+            fkFranquia: sel_voto.value.value,
+            
+        }
+
+        fetch(`/avisos/publicar/${fkUsuario}`, {
+            method: "post",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(corpo)
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.location = "/dashboard/mural.html";
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+
+    }
+
+
+
+
+   
+
+</script>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AquaTech | Dashboards</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="dashboards.css">
+    <script src="../js/funcoes.js"></script>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+
+    <!-- scripts do Chart.js - 2022-1 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!--FONT AWESOME-->
+    <script src="https://kit.fontawesome.com/9f7414eb10.js" crossorigin="anonymous"></script>
+</head>
+
+<body onload="obterDadosGrafico()">
+
+    <div class="janela">
+        <div class="header-left">
+            <h1>BestHobby</h1>
+
+            <div class="hello">
+                <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./cards.html">
+                    <h3>Voto</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav">
+
+                <h3>Ranking</h3>
+
+            </div>
+
+
+            <div class="btn-logout" onclick="limparSessao()">
+                <h3>Sair</h3>
+            </div>
+
+        </div>
+
+        <div class="dash">
+            <div class="btns-dash">
+                <!-- O gráfico é chamado de acordo com o id (fk_aquario) do banco  -->
+                <button class="btn-chart btn-pink" onclick="obterDadosGrafico()">Ranking</button>
+
+            </div>
+            <div>
+                <h3 class="tituloGraficos">
+                    <span id="tituloAquario">As Franquias mais votadas</span>
+                </h3>
+            </div>
+
+            <div class="graph">
+                <canvas id="myChart"></canvas>
+            </div>
+
+
+
+            <div class="avisoCaptura">
+                <p id="avisoCaptura" style="color: white"></p>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
+
+<script>
+
+
+
+    b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
+
+
+    function obterDadosGrafico() {
+
+
+
+        fetch(`/medidas/ultimas`, { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+
+                    console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                    plotarGrafico(resposta);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGrafico(resposta) {
+        console.log('iniciando plotagem do gráfico...');
+
+        // Criando estrutura para plotar gráfico - labels
+        let labels = [];
+
+        // Criando estrutura para plotar gráfico - dados
+        let dados = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Quantidade de Votos',
+                    data: [],
+                    fill: false,
+                    backgroundColor: ['red', 'white', 'yellow', 'blue'],
+                    tension: 0.1
+                }
+
+            ]
+        };
+
+        console.log('----------------------------------------------')
+        console.log('Estes dados foram recebidos pela funcao "obterDadosGrafico" e passados para "plotarGrafico":')
+        console.log(resposta)
+
+        // Inserindo valores recebidos em estrutura para plotar o gráfico
+
+        for (i = 0; i < resposta.length; i++) {
+            var franquia = resposta[i];
+
+            labels.push(franquia.nome);
+
+            dados.datasets[0].data.push(franquia.contagem);
+        }
+        console.log('----------------------------------------------')
+        console.log('O gráfico será plotado com os respectivos valores:')
+        console.log('Labels:')
+        console.log(labels)
+        console.log('Dados:')
+        console.log(dados.datasets)
+        console.log('----------------------------------------------')
+
+        // Criando estrutura para plotar gráfico - config
+        const config = {
+            type: 'bar',
+            data: dados,
+        };
+
+        // Adicionando gráfico criado em div na tela
+        let myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+    }
+
+
+</script>

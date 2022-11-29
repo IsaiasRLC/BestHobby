@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/inicial.css">
+    <link rel="stylesheet" href="css/sobre.css">
+    <link rel="stylesheet" href="css/cadastro.css">
+    <title>Cadastrar | BestHobby</title>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+</head>
+
+<body>
+    <!-- peimeiro header com banner  -->
+
+
+    <div class="header2">
+        <div class="fraselogo2">
+            <h1><span>Best</span>Hobby</h1>
+        </div>
+        <div class="foto">
+            <img src="./assets/imgs/pipoca.png" class="logo2">
+        </div>
+        
+        <div class="navbar2">
+            <ul>
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="sobre.html">SOBRE</a></li>
+                <li>|</li>
+                <li><a href="cadastro.html">CADASTRO</a></li>
+                <li><a href="login.html">LOGIN</a></li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    
+    <div class="banner">
+        
+        <div class="container">
+            <img src="./assets/imgs/Design_sem_nome-removebg-preview.png"  class="TelaCinema" alt=""> 
+            <div class="caixaInput">
+                <h2>Olá, Seja Bem-Vindo(a)</h2><br>
+                <div class="campo">
+                    <label for="Nome">Nome:</label>
+                    <input type="Nome" id="in_Nome" placeholder="Coloque seu nome">
+                    
+                    
+                    <label for="email">E-mail:</label>
+                    <input type="email" id="in_email" placeholder="Coloque seu E-mail">
+                </div>
+                
+                <div class="campo2">
+                    
+                    <label for="password">Senha:</label>
+                    <input type="password" id="in_senha" placeholder="Coloque sua Senha">
+                    
+                    
+                    <label for="Csenha">Confirmação da senha:</label>
+                    <input type="password" id="in_ConfirmacaoSenha" placeholder="Confirme sua senha">
+                    
+                </div>
+                
+                
+                <button onclick="cadastrar()">Cadastrar</button>
+                
+                
+            </div>
+        </div>
+        
+        
+        
+    </div>
+    
+    
+
+    <!-- <div class="footer">
+
+        <div class="contato">
+            <h2>Contato</h2>
+            <ul>
+                <li> <a href="https://www.linkedin.com/in/isaias-resende-aa721a190/"><img src="logo.novoLinke.png" /></a></li>
+                <li> <a href="https://www.instagram.com/sasa.rends/"><img src="logo.novoInsta.png" /></a></li>
+                <li> <a href = "mailto: isaias.carvalho@sptech.school
+                    "><img src="logo.novoEma.png" /></a></li>
+            </ul>
+        </div>
+
+
+        <h5>Desenvolvido por um aluno SPTech - &copy;CopyRight </h5>
+    </div> -->
+
+
+</body>
+
+</html>
+
+
+
+<script>
+     ScrollReveal().reveal('.container', { duration: 2000 });
+
+    function cadastrar() {
+        // aguardar();
+
+        //Recupere o valor da nova input pelo nome do id
+        // Agora vá para o método fetch logo abaixo
+        var nomeVar = in_Nome.value;
+        var emailVar = in_email.value;
+        var senhaVar = in_senha.value;
+        var confirmacaoSenhaVar = in_ConfirmacaoSenha.value;
+
+        if (nomeVar == "" || emailVar == "" || senhaVar == "" || confirmacaoSenhaVar == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+
+            // finalizarAguardar();
+            return false;
+        }
+        else {
+            // setInterval(sumirMensagem, 5000)
+        }
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                nomeServer: nomeVar,
+                emailServer: emailVar,
+                senhaServer: senhaVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                // cardErro.style.display = "block";
+
+                // mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+                setTimeout(() => {
+                    window.location = "login.html";
+                }, "2000")
+                
+                limparFormulario();
+                // finalizarAguardar();
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+            // finalizarAguardar();
+        });
+
+        return false;
+    }
+
+    // function sumirMensagem() {
+    //     cardErro.style.display = "none"
+    // }
+
+
+
+</script>

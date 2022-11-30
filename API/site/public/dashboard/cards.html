@@ -2,14 +2,14 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon"   href="../assets/imgs/pipoca.png" sizes="85x85">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Tempo Real</title>
+    <title>Votação | BestHobby</title>
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="dashboards.css">
+    <link rel="stylesheet" href="../css/dashboards.css">
 
     <script src="../js/funcoes.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -24,8 +24,8 @@
 
 
         <div class="header-left dash-header">
-
-            <h1>BestHobby</h1>
+            <img src="../assets/imgs/pipoca.png" class="logoPipoca" alt="">
+            <h1><span>Best</span>Hobby</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
@@ -38,6 +38,12 @@
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
                     <h3>Ranking</h3>
+                </a>
+            </div>
+
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Curiosidades</h3>
                 </a>
             </div>
 
@@ -57,8 +63,8 @@
                 <option value="">selecione</option>
                 <option value="1">Marvel</option>
                 <option value="2">DC</option>
-                <option value="3">StarWas</option>
-                <option value="4">One Peice</option>
+                <option value="3">Star Wars</option>
+                <option value="4">One Piece</option>
             </select>    
             <br>
 
@@ -94,8 +100,7 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
         var fkUsuario =  sessionStorage.ID_USUARIO 
 
         var corpo = {
-            fkFranquia: sel_voto.value.value,
-            
+            fkFranquia: selectVar            
         }
 
         fetch(`/avisos/publicar/${fkUsuario}`, {
@@ -109,7 +114,7 @@ b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
+                window.alert("Post realizado com sucesso pelo usuario de ID: " + fkUsuario + "!");
                 window.location = "/dashboard/mural.html";
             } else if (resposta.status == 404) {
                 window.alert("Deu 404!");

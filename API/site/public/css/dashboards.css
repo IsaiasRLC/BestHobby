@@ -1,6 +1,18 @@
+/* fonte para o site */
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;500;600&display=swap');
+
+/* fonte para a logo */
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Roboto+Slab:wght@400;500;600&display=swap');
+
+/* logo 2prt */
+@import url('https://fonts.googleapis.com/css2?family=Nixie+One&display=swap');
+
 /* pagina mural */
 
-*,
+*{
+  
+  font-family: 'Roboto Slab', serif;
+}
 body {
   font-family: "Exo 2", sans-serif;
 }
@@ -114,6 +126,28 @@ body {
   background-color: #0C2738;
   background-color: #0C2738;
 }
+.header-left h1{
+  font-size: 215%;
+  margin-top: 2%;
+  margin-left: 5%;
+  color: aliceblue;
+  text-shadow: 10px 0px 10px black;
+}
+
+.header-left span{
+  font-weight: 500;
+  font-family: 'Nixie One', cursive;
+}
+
+.logoPipoca{
+  position: absolute;
+    width: 65px;
+    transform: rotate(12deg);
+    margin-left: -63%;
+    margin-top: -150%;
+}
+
+
 
 .dash {
   width: 75%;
@@ -328,4 +362,62 @@ body {
   border: solid transparent;
   border-width: 0 0 2px 2px;
   transform: rotate(315deg);
+}
+
+/*  curiosidades */
+
+.curiosidade {
+  width: 75%;
+  position: relative;
+  top: 0;
+  left: 25%;
+  padding: 22.58% 0%;
+  background-color: #05151f;
+}
+
+.curiosidade h2{
+  color: white;
+  margin-left: 28%;
+  margin-top: -28%;
+}
+
+.class_escolha{
+  display: flex; 
+  margin-left: 35%; 
+  margin-top: 1% ;
+  text-align: center;
+  font-size: 120%;
+  width: 30%;
+  padding: 20px 0px; 
+  border-radius: 4%;
+
+
+}
+
+.btn_escolha{
+  display: flex; 
+  margin-left: 42%; 
+  margin-top: 0% ;
+  font-size: 120%;
+  text-align: center;
+  width: 15%;
+  background-color: yellow;
+  color:#0C2738 ;
+  padding: 10px 35px; 
+  border-radius: 10%;
+}
+
+#fraseCurisodade{
+  display: flex; 
+  position: absolute;
+  margin-left: 9%; 
+  margin-top: -22% ;
+  font-size: 180%;
+  width: 75%;
+  text-align: center ;
+  color:white ;
+  font-weight: 500;
+  padding: 10px 35px; 
+  text-shadow: 1px 1px 2px  black;
+  
 }

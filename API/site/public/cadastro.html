@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href="./assets/imgs/pipoca.png" sizes="85x85">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -74,24 +75,7 @@
         
         
     </div>
-    
-    
 
-    <!-- <div class="footer">
-
-        <div class="contato">
-            <h2>Contato</h2>
-            <ul>
-                <li> <a href="https://www.linkedin.com/in/isaias-resende-aa721a190/"><img src="logo.novoLinke.png" /></a></li>
-                <li> <a href="https://www.instagram.com/sasa.rends/"><img src="logo.novoInsta.png" /></a></li>
-                <li> <a href = "mailto: isaias.carvalho@sptech.school
-                    "><img src="logo.novoEma.png" /></a></li>
-            </ul>
-        </div>
-
-
-        <h5>Desenvolvido por um aluno SPTech - &copy;CopyRight </h5>
-    </div> -->
 
 
 </body>
@@ -117,11 +101,9 @@
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
 
-            // finalizarAguardar();
             return false;
         }
         else {
-            // setInterval(sumirMensagem, 5000)
         }
 
         // Enviando o valor da nova input
@@ -142,22 +124,23 @@
             console.log("resposta: ", resposta);
 
             if (resposta.ok) {
-                // cardErro.style.display = "block";
-
-                // mensagem_erro.innerHTML = "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
+                
                 setTimeout(() => {
                     window.location = "login.html";
                 }, "2000")
                 
+                alert('Cadastro realizado com sucesso')
+                alert('redirecionar para o login')
+
                 limparFormulario();
-                // finalizarAguardar();
+                // finalizarAguardar()
+                ;
             } else {
                 throw ("Houve um erro ao tentar realizar o cadastro!");
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
+            
         });
 
         return false;

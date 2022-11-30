@@ -2,51 +2,53 @@
 <html lang="pt-br">
 
 <head>
-    <link rel="shortcut icon" href="../assets/icon/favicon2.ico" type="image/x-icon">
+    <link rel="shortcut icon"   href="../assets/imgs/pipoca.png" sizes="85x85">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaTech | Avisos</title>
+    <title>Curiosidades | BestHobby</title>
 
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="stylesheet" href="./dashboards.css">
-    <script src="../js/funcoes.js"></script>
+    <link rel="stylesheet" href="../css/dashboards.css">
 
+    <script src="../js/funcoes.js"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link
         href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 </head>
 
-<body onload="validarSessao(), atualizarFeed()" style="background-color: #161618;">
-    <!-- <body onload="validarSessao()"> -->
+<body>
 
     <div class="janela">
 
 
-        <div class="header-left">
-
-            <h1>AquaTech</h1>
+        <div class="header-left dash-header">
+            <img src="../assets/imgs/pipoca.png" class="logoPipoca" alt="">
+            <h1><span>Best</span>Hobby</h1>
 
             <div class="hello">
                 <h3>Olá, <span id="b_usuario">usuário</span>!</h3>
             </div>
 
-            <div class="btn-nav-white">
-                <a href="cards.html">
-                    <h3>Aquários</h3>
-                </a>
+            <div class="btn-nav">
+                <a href="cards.html"><h3>Voto</h3></a>
             </div>
 
             <div class="btn-nav-white">
                 <a href="./dashboard.html">
-                    <h3>Gráficos</h3>
+                    <h3>Ranking</h3>
                 </a>
             </div>
 
-            <div class="btn-nav">
-                <h3>Mural de Avisos</h3>
+            <div class="btn-nav-white">
+                <a href="./mural.html">
+                    <h3>Curiosidades</h3>
+                </a>
             </div>
+
+
+
 
             <div class="btn-logout" onclick="limparSessao()">
                 <h3>Sair</h3>
@@ -54,226 +56,79 @@
 
         </div>
 
-        <div class="dash-right">
+        <div class="curiosidade">
 
-            <div class="avisos">
-                <div class="container">
-                    <h1>Publicar um aviso</h1>
-                    <div class="div-form">
-                        <form id="form_postagem" method="post" onsubmit="return publicar()">
-                            <label>
-                                Título:
-                                <br>
-                                <input name="titulo" id="titulo" maxlength="100" type="text">
-                            </label>
-                            <br>
-                            <label>
-                                Descrição (máximo de 250 caracteres):
-                                <br>
-                                <textarea name="descricao" id="textarea_descricao" maxlength="250" rows="5"></textarea>
-                            </label>
-                            <br>
-                            <button>Enviar</button>
-                        </form>
-                    </div>
-                    <h1>Mural de Avisos</h1>
-                    <div class="div-results">
-                        <div id="feed_container" class="feed-container">
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h2>Descubra mais sobre sua franquia 😁</h2>
 
 
 
+            <select class="class_escolha" id="sel_escolha">
+                <option value="">selecione</option>
+                <option value="Marvel">Marvel</option>
+                <option value="DC">DC</option>
+                <option value="Star Wars">Star Wars</option>
+                <option value="One Piece">One Piece</option>
+            </select>
+            <br>
 
-            <!-- MODAL -->
-            <!-- <div id="div_modal" class="div-modal">
-                <div id="modal_backdrop" onclick="fecharModal()" class="modal-backdrop">
-                </div>
-                <div id="modal_container" class="modal-container">
-                    <button class="btn-fechar-modal" onclick="fecharModal()">X</button>
-                </div>
-            </div> -->
+            <button class="btn_escolha" onclick="pesquisar()">pesquisar</button><br>
 
-            <!-- AGUARDAR -->
-            <!-- <div id="div_aguardar" class="div-aguardar">
-                <img src="./assets/aguarde-pink3.gif" id="img_aguarde">
-            </div>  -->
+            <div id="ImagemCurisodade"></div>
+            <div id="fraseCurisodade"></div>
+            
+
 
         </div>
-    </div>
-
-
 
 
 </body>
 
-</html>
+
 
 <script>
-    
+    var franquias = ['Marvel', 'DC', 'Star Wars', 'One Piece']
+
     b_usuario.innerHTML = sessionStorage.NOME_USUARIO;
 
-    function limparFormulario() {
-        document.getElementById("form_postagem").reset();
-    }
+    function pesquisar() {
 
-    function publicar() {
-        var idUsuario = sessionStorage.ID_USUARIO;
+        for (indice = 0; indice < franquias.length; indice++) {
+            var atual = franquias.indexOf(sel_escolha.value)
+            var resultado = sel_escolha.value
 
-        var corpo = {
-            titulo: form_postagem.titulo.value,
-            descricao: form_postagem.descricao.value
-        }
-
-        fetch(`/avisos/publicar/${idUsuario}`, {
-            method: "post",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(corpo)
-        }).then(function (resposta) {
-
-            console.log("resposta: ", resposta);
-
-            if (resposta.ok) {
-                window.alert("Post realizado com sucesso pelo usuario de ID: " + idUsuario + "!");
-                window.location = "/dashboard/mural.html";
-                limparFormulario();
-                finalizarAguardar();
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
+            if (atual < 0) {
+                fraseCurisodade.innerHTML = `Não existe a fruta ${resultado} na lista`
             } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            finalizarAguardar();
-        });
 
-        return false;
+                if (resultado == 'Marvel') {
+                    ImagemCurisodade.innerHTML = `<img src="https://prod-ripcut-delivery.disney-plus.net/v1/variant/disney/DA2E198288BFCA56AB53340211B38DE7134E40E4521EDCAFE6FFB8CD69250DE9/scale?width=2880&aspectRatio=1.78&format=jpeg" style="width:90% ; margin-left: 5%; -webkit-mask-image:linear-gradient(to top, transparent 5%, #05151f 80%); border-radius: 2%;" alt=""> `
 
-    }
+                    fraseCurisodade.innerHTML = ' "A Marvel Entertainment foi fundada em 1939, nos Estados Unidos, por Martin Goodman. A empresa, conhecida originalmente pelos quadrinhos, se transformou em uma das principais empresas do entretenimento mundial, com grande presença entre os filmes de maior bilheteria da história."'
 
-    function editar(idAviso) {
-        sessionStorage.ID_POSTAGEM_EDITANDO = idAviso;
-        console.log("cliquei em editar - " + idAviso);
-        window.alert("Você será redirecionado à página de edição do aviso de id número: " + idAviso);
-        window.location = "/dashboard/edicao-aviso.html"
+                } else if (resultado == 'DC') {
+                    ImagemCurisodade.innerHTML = `<img src="http://s2.glbimg.com/CJRxuzh0enLW5LGEy76didWveIU=/e.glbimg.com/og/ed/f/original/2017/11/16/liga-da-justica.jpg" style="width:90% ; margin-left: 5%; -webkit-mask-image:linear-gradient(to top, transparent 5%, #05151f 80%); border-radius: 2%;" alt=""> `
 
-    }
+                    fraseCurisodade.innerHTML = ' "A DC Comics é uma das gigantes do mundo das histórias em quadrinhos. A empresa é responsável por personagens icônicos que vão além das páginas, assim como Batman, Superman, Mulher Maravilha e Flash. Isso, sem falar nos grupos consagrados, como Liga da Justiça e Jovens Titãs."'
 
-    function deletar(idAviso) {
-        console.log("Criar função de apagar post escolhido - ID" + idAviso);
-        fetch(`/avisos/deletar/${idAviso}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        }).then(function (resposta) {
+                } else if (resultado == 'Star Wars') {
+                    ImagemCurisodade.innerHTML = `<img src="https://lumiere-a.akamaihd.net/v1/images/cg_starwars_skywalkersaga_mobile_20370_7b5e45d9.jpeg" style="width:90% ; margin-left: 5%; -webkit-mask-image:linear-gradient(to top, transparent 5%, #05151f 90%);border-radius: 2%;" alt=""> `
 
-            if (resposta.ok) {
-                window.alert("Post deletado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
-    }
+                    fraseCurisodade.innerHTML = ' "Star wars é uma história de fantasia que engloba elementos batidos na literatura e no cinema, como romance, drama, humor e luta entre bem e mal. O centro da trama é uma disputa política entre um império tirano e ditatorial e um grupo libertário. O enredo é permeado pela tragédia pessoal de Anakin Skywalker, um jedi (do bem) que sucumbe ao Lado Sombrio da Força (do mal) se transformando no vilão Darth Vader, que é um dos líderes do Império Galático."'
 
-    function atualizarFeed() {
-        //aguardar();
-        fetch("/avisos/listar").then(function (resposta) {
-            if (resposta.ok) {
-                if (resposta.status == 204) {
-                    var feed = document.getElementById("feed_container");
-                    var mensagem = document.createElement("span");
-                    mensagem.innerHTML = "Nenhum resultado encontrado."
-                    feed.appendChild(mensagem);
-                    throw "Nenhum resultado encontrado!!";
+                } else if (resultado == 'One Piece') {
+                    ImagemCurisodade.innerHTML = `<img src="https://gasha.com.br/wp-content/uploads/2020/01/One-Piece-Wallpaper-de-Wano-Novo-Arco.jpg" style="width:90% ; margin-left: 5%; -webkit-mask-image:linear-gradient(to top, transparent 5%, #05151f 80%);border-radius: 2%;" alt=""> `
+
+                    fraseCurisodade.innerHTML = ' "A série foca em Monkey D. Luffy, um jovem feito de borracha, que, inspirado em seu ídolo de infância, o poderoso pirata Shanks, o Ruivo, parte em uma jornada do mar do East Blue para encontrar o tesouro mítico, o One Piece, e proclamar-se o Rei dos Piratas."'
                 }
 
-                resposta.json().then(function (resposta) {
-                    console.log("Dados recebidos: ", JSON.stringify(resposta));
-
-                    var feed = document.getElementById("feed_container");
-                    feed.innerHTML = "";
-                    for (let i = 0; i < resposta.length; i++) {
-                        var publicacao = resposta[i];
-
-                        // criando e manipulando elementos do HTML via JavaScript
-                        var divPublicacao = document.createElement("div");
-                        var spanID = document.createElement("span");
-                        var spanTitulo = document.createElement("span");
-                        var spanNome = document.createElement("span");
-                        var divDescricao = document.createElement("div");
-                        var divButtons = document.createElement("div");
-                        var btnEditar = document.createElement("button");
-                        var btnDeletar = document.createElement("button");
-
-
-                        spanID.innerHTML = "ID: <b>" + publicacao.idAviso + "</b>";
-                        spanTitulo.innerHTML = "Título: <b>" + publicacao.titulo + "</b>";
-                        spanNome.innerHTML = "Autor: <b>" + publicacao.nome + "</b>";
-                        divDescricao.innerHTML = "Descrição: <b>" + publicacao.descricao + "</b>";
-                        btnEditar.innerHTML = "Editar";
-                        btnDeletar.innerHTML = "Deletar";
-
-                        divPublicacao.className = "publicacao";
-                        spanTitulo.id = "inputNumero" + publicacao.idAviso;
-                        spanNome.className = "publicacao-nome";
-                        spanTitulo.className = "publicacao-titulo";
-                        divDescricao.className = "publicacao-descricao";
-
-                        divButtons.className = "div-buttons"
-
-                        btnEditar.className = "publicacao-btn-editar"
-                        btnEditar.id = "btnEditar" + publicacao.idAviso;
-                        btnEditar.setAttribute("onclick", `editar(${publicacao.idAviso})`);
-
-                        btnDeletar.className = "publicacao-btn-editar"
-                        btnDeletar.id = "btnDeletar" + publicacao.idAviso;
-                        btnDeletar.setAttribute("onclick", `deletar(${publicacao.idAviso})`);
-
-                        divPublicacao.appendChild(spanID);
-                        divPublicacao.appendChild(spanNome);
-                        divPublicacao.appendChild(spanTitulo);
-                        divPublicacao.appendChild(divDescricao);
-                        divPublicacao.appendChild(divButtons);
-                        divButtons.appendChild(btnEditar);
-                        divButtons.appendChild(btnDeletar);
-                        feed.appendChild(divPublicacao);
-                    }
-
-                    finalizarAguardar();
-                });
-            } else {
-                throw ('Houve um erro na API!');
             }
-        }).catch(function (resposta) {
-            console.error(resposta);
-            finalizarAguardar();
-        });
-    }
+        }
 
-    function testar() {
-        aguardar();
 
-        var formulario = new URLSearchParams(new FormData(document.getElementById("form_postagem")));
 
-        var divResultado = document.getElementById("div_feed");
 
-        divResultado.appendChild(document.createTextNode(formulario.get("descricao")));
-        divResultado.innerHTML = formulario.get("descricao");
-
-        finalizarAguardar();
-
-        return false;
     }
 
 </script>
+
+</html>

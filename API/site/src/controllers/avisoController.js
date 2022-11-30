@@ -44,13 +44,15 @@ function entrar(req, res) {
 
 function publicar(req, res) {
    
+    var idUsuario = req.params.fkUsuario;
     var fkFranquia = req.body.fkFranquia;
-    var idUsuario = req.params.idUsuario;
+
+    console.log(fkFranquia + '---------------');
 
     if (fkFranquia == undefined) {
         res.status(400).send("O título está indefinido!");
     } else if (idUsuario == undefined) {
-        res.status(403).send("O id do usuário está indefinido!");
+        res.status(400).send("O id do usuário está indefinido!");
     } else {
         avisoModel.publicar(fkFranquia, idUsuario)
             .then(

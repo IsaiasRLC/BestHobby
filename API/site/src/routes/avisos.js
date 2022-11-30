@@ -19,11 +19,5 @@ router.post("/publicar/:fkUsuario", function (req, res) {
     avisoController.publicar(req, res);
 });
 
-router.post("/publicar", function (req, res) {
-    avisoController.entrar(req, res);
-});
-
-
-
 
 module.exports = router;

@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href="./assets/imgs/pipoca.png" sizes="85x85">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -68,34 +69,11 @@
 
 
 
-
-
-
-
-
-
-    <!-- <div class="footer">
-
-        <div class="contato">
-            <h2>Contato</h2>
-            <ul>
-                <li> <a href="https://www.linkedin.com/in/isaias-resende-aa721a190/"><img src="logo.novoLinke.png" /></a></li>
-                <li> <a href="https://www.instagram.com/sasa.rends/"><img src="logo.novoInsta.png" /></a></li>
-                <li> <a href = "mailto: isaias.carvalho@sptech.school
-                    "><img src="logo.novoEma.png" /></a></li>
-            </ul>
-        </div>
-
-
-        <h5>Desenvolvido por um aluno SPTech - &copy;CopyRight </h5>
-    </div> -->
-
-
 </body>
 
 </html>
 <script>
-    ScrollReveal().reveal('.textoPq', { duration: 1900 });
+    ScrollReveal().reveal('.container', { duration: 1900 });
     ScrollReveal().reveal('.textoRs', { duration: 1900 });
     ScrollReveal().reveal('.imagemMotivacao', { duration: 2500 });
     ScrollReveal().reveal('.fraseSobre', { duration: 2500 });
@@ -141,17 +119,21 @@
 
                     sessionStorage.EMAIL_USUARIO = json.email;
                     sessionStorage.NOME_USUARIO = json.nome;
-                    sessionStorage.ID_USUARIO = json.id;
+                    sessionStorage.ID_USUARIO = json.idUsuario;
 
                     setTimeout(function () {
                         window.location = "./dashboard/cards.html";
                     }, 1000); // apenas para exibir o loading
+                    alert('Login realizado com sucesso')
+                    alert('redirecionar para a tela de votação')
 
                 });
 
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");
+                alert('Login invalido')
+
 
                 resposta.text().then(texto => {
                     console.error(texto);

@@ -11,9 +11,9 @@ function entrar(email, senha) {
 
 
 function publicar(fkFranquia, idUsuario) {
-    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", titulo, descricao, idUsuario);
+    console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function publicar(): ", fkFranquia, idUsuario);
     var instrucao = `
-        INSERT INTO voto (titulo, descricao, fkUsuario) VALUES ('${fkFranquia}', ${idUsuario});
+        INSERT INTO voto (fkUsuario, fkFranquia) VALUES (${idUsuario},${fkFranquia});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
